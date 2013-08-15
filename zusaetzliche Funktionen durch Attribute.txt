@@ -1,0 +1,49 @@
+Hier eine aktuelle Liste von Attributen, die in JTL-Wawi eingegeben werden können pro Artikel, um bestimmte Funktionen im Shop anzusprechen. 
+
+Attribute in JTL-Wawi: 
+ 
+
+Ein Attribut besteht aus einem Namen und Inhalt. Der Name entscheidet, ob es eine Funktion ausführen soll oder nicht. Attribute ohne Funktion werden der Beschreibung angehängt (wie etwa Durchmesser, Maße, Garantiezeit, etc.) 
+
+Attributart kann sein: Kurztext, Langtext, Ganzzahl, Kommazahl. Hier geben wir als Art entweder Text oder Zahl an. Groß- und Kleinschreibung ist irrelevant. 
+Folgende Attribute werden vom XTC Connector unterstützt:
+
+Attributname - Attributart - Beschreibung 
+Stand: Version 0.994 
+reihung - Zahl - Sortierungsnummer 
+reihung startseite - Zahl - Sortierungsnummer Startseite 
+suchbegriffe - Text - Begriffe, die die Suche unterstützen 
+meta title - Text - Soll Suchmaschinen unterstützen 
+meta description - Text - Soll Suchmaschinen unterstützen 
+meta keywords - Text - Soll Suchmaschinen unterstützen 
+herstellerlink - Text - Link zum Hersteller 
+lieferstatus - Text - wird erstellt, falls noch nicht vorhanden 
+fsk 18 - Text - Als Wert nur "ja" möglich 
+vpe wert - Zahl - Wert der Verpackungseinheit 
+vpe anzeigen - Text - Als Wert nur "ja" möglich 
+rabatt erlaubt - Zahl - Rabatt des Artikels 
+produktvorlage - zu benutzende Vorlage zur Produktpräsentation 
+variationsvorlage - zu benutzende Vorlage zur Variationspräsentation 
+produktstatus - Zahl (0/1). Artikel aktiv / inaktiv. Standardmäßig ist das Produkt immer aktiv. Also nur nutzen, wenn es inaktiv werden soll. 
+erscheinungsdatum - Format TT.MM.YYYY 
+Gruppenerlaubnis - Text - Kommagetrennte Gruppen, die diesen Artikel sehen dürfen, z.B. "1,3,4". Fehlt dieses Attribut, so wird der Artikel für alle Kundengruppen freigeschaltet. Funktioniert nur, wenn im Shop der Kundengruppencheck aktiviert ist. Die KundengruppenIDs kann man über den Shopadmin unter Kundengruppen herausfinden. Man klickt die Kundengruppen an und achtet dann auf die Adressleiste (.../admin/customers_status.php?page=1&cID=X). Das X ist die KundengruppenID zur angeklickten Kundengruppe. 
+
+Sonderpreise (auch für OSC/ZC Connector): 
+Für Sonderpreise gelten diese 4 Attribute: 
+sonder_preis | Kurztext | im Format xx.xx (z.B. 10.99) 
+sonder_aktiv | Zahl | 1 für aktiv, 0 für inaktiv (z.B. zum vorbereiten oder vorzeitigem beenden des Sonderangebotes 
+sonder_enddatum | Kurztext | im Format TT.MM.JJJJ (z.B. 31.03.2007) 
+sonder_menge | Zahl | hier halt die Menge als ganze Zahl (ohne Kommastellen, z.B. 10) 
+
+Zwingend notwendig sind nur sonder_preis und sonder_status. Die anderen beiden sind optional. 
+Bei der Menge gibt es das Problem, das die Menge bei jedem Abgleich des Artikels wieder neu gesetzt wird. Daher sollte dieses Attribut nach der Übertragung in den Shop wieder gelöscht werden. Die Mengeneinstellung im Shop bleibt erhalten. 
+
+Alle Attribute mit anderen Namen lösen keine Funktion aus und werden folgendermaßen ans Ende der Artikelbeschreibung angehängt: 
+Attributname: Attributwert 
+Dieses Verhalten lässt sich im Connector abschalten. Datei dbeS/syncinclude. Diese Zeile steuert den Anhang von nicht funktionsgebundenen Attributen an die Beschreibung des Artikels: Code:
+define ('ES_ATTRIBUTE_AN_BESCHREIBUNG_ANHAENGEN',1);
+
+
+Mit einer 0 wird diese Funktion abgeschaltet.
+
+Aktuelle Informationen zu Attributen findet man unter http://www.jtl-software.de/forum/viewtopic.php?p=3256#3256
