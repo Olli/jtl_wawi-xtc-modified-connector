@@ -27,7 +27,7 @@ if (auth())
 		//hole orders_products_id
 		$orders_products_id = getFremdBestellPos(intval($_POST['KeyBestellPos']));
 			
-		//hole alle Eigenschaften, die ausgewÃÂ¤hlt wurden zu dieser bestellung
+		//hole alle Eigenschaften, die ausgewählt wurden zu dieser bestellung
 		$cur_query = eS_execute_query("select orders_products_attributes.*, orders_products.products_tax, orders_products.products_id from orders_products_attributes, orders_products where orders_products_attributes.orders_products_id=".$orders_products_id." and orders_products.orders_products_id=orders_products_attributes.orders_products_id order by orders_products_attributes.orders_products_id");
 		while ($WarenkorbPosEigenschaft = mysql_fetch_object($cur_query))
 		{

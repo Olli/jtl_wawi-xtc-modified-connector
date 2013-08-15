@@ -19,7 +19,7 @@ require_once (DOCROOT_PATH.'admin/includes/configure.php');
 require_once (DIR_FS_INC . 'xtc_db_connect.inc.php');
 require_once (DIR_FS_INC . 'xtc_db_query.inc.php');
 
-xtc_db_connect() or die('Kann Datenbankverbindung nicht herstellen! ÃÂberprÃÂ¼fen Sie den DOCROOT_PATH im jtlwawi_connector/paths.php Script Zeile 15. Der Pfad muss entweder relativ oder absolut auf das Rootverzeichnis Ihres Shops zeigen (meist <i>xtcommerce</i>).');
+xtc_db_connect() or die('Kann Datenbankverbindung nicht herstellen! überprüfen Sie den DOCROOT_PATH im jtlwawi_connector/paths.php Script Zeile 15. Der Pfad muss entweder relativ oder absolut auf das Rootverzeichnis Ihres Shops zeigen (meist <i>xtcommerce</i>).');
 
 define ('ES_ENABLE_LOGGING',0);
 define ('ES_ATTRIBUTE_AN_BESCHREIBUNG_ANHAENGEN',1);
@@ -93,9 +93,9 @@ function CSVkonform($value)
 
 function datetime2germanDate($datetime)
 {
-	list ($datum, $uhrzeit) = explode(" ", $datetime);
-	list ($jahr, $monat, $tag) = explode("-", $datum);
-	list ($std, $min, $sec) = explode(":", $uhrzeit);
+	list ($datum, $uhrzeit) = split(" ",$datetime);
+	list ($jahr, $monat, $tag) = split ("-",$datum);
+	list ($std, $min, $sec) = split (":",$uhrzeit);	
 	return $tag.'.'.$monat.'.'.$jahr.' '.$std.':'.$min.':'.$sec;
 }
 

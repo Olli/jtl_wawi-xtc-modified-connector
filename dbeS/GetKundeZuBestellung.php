@@ -39,9 +39,13 @@ if (auth())
 		$Kunde->customers_vat_id = $cust->customers_vat_id;
 		$Kunde->geburtsdatum = $cust->geburtsdatum;
 		
-		$Kunde->cAnrede="Frau";
+		$Kunde->cAnrede="";
 		if ($Kunde->customers_gender=="m")
 			$Kunde->cAnrede="Herr";
+
+		if ($Kunde->customers_gender=="f")
+			$Kunde->cAnrede="Frau";
+
 			
 		$Kunde->cHaendler="N";
 		if (in_array($Kunde->customers_status,$haendler_arr))

@@ -131,7 +131,7 @@ function installSchritt1()
 	if (!$einstellungen->tax_priority)
 		$einstellungen->tax_priority = 1;
 	if (!$einstellungen->versandMwst)
-		$einstellungen->versandMwst = 16;
+		$einstellungen->versandMwst = 19;
 	if (!$einstellungen->tax_zone_id)
 		$einstellungen->tax_zone_id = 5;
 	if (!$einstellungen->languages_id)

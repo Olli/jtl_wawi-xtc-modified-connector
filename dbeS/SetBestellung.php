@@ -94,7 +94,7 @@ if (auth())
 		{
 			eS_execute_query("update orders set orders_status=".$einstellungen->StatusAbgeholt." where orders_id=".intval($_POST['KeyBestellung']));
 			//fÃÂ¼ge history hinzu
-			$kommentar = "Erfolgreich in JTL-Wawi ÃÂ¼bernommen";
+			$kommentar = "Erfolgreich in JTL-Wawi übernommen";
 			eS_execute_query("insert into orders_status_history (orders_id, orders_status_id, date_added, comments) values(".intval($_POST['KeyBestellung']).", ".$einstellungen->StatusAbgeholt.", now(), \"".$kommentar."\")");
 		}
 		

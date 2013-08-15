@@ -60,7 +60,8 @@ if (auth())
 		}
 		
 		//letzte Positionen wie Versand, Mindermengenzuschlag, Rabatt, Kupon etc.
-		$cur_query = eS_execute_query("select * from orders_total where (class=\"ot_shipping\" OR class=\"ot_cod_fee\" OR class=\"ot_coupon\" OR class=\"ot_discount\" OR class=\"ot_orderdiscount\" OR class=\"ot_gv\" OR class=\"ot_loworderfee\" OR class=\"ot_ps_fee\" OR class=\"ot_payment\") and orders_id=".intval($_POST['KeyBestellung'])." order by sort_order");
+		$cur_query = eS_execute_query("select * from orders_total where (class=\"ot_shipping\" OR class=\"ot_cod_fee\" OR class=\"ot_coupon\" OR class=\"ot_discount\" OR class=\"ot_orderdiscount\" OR class=\"ot_gv\" OR class=\"ot_loworderfee\" OR class=\"ot_ps_fee\" OR class=\"ot_payment\" OR class=\"ot_sperrgut\") and orders_id=".intval($_POST['KeyBestellung'])." order by sort_order");
+
 		while ($total_pos = mysql_fetch_object($cur_query))
 		{
 			if ($total_pos->class=="ot_shipping" || $total_pos->value!=0)
@@ -136,7 +137,12 @@ if (auth())
 						break;
 					case 'ot_payment':
 						$steuersatz = $einstellungen->versandMwst;
-						break;						
+						break;
+					case 'ot_sperrgut':
+						$total_pos->value*=1;
+						$steuersatz = $einstellungen->versandMwst;
+						break;
+												
 				}
 				echo(CSVkonform($kBestellPos).';');
 				echo(CSVkonform(intval($_POST['KeyBestellung'])).';');
